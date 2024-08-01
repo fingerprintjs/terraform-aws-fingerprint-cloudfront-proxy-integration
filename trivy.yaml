@@ -1,0 +1,14 @@
+timeout: 10m
+format: table
+dependency-tree: true
+list-all-pkgs: true
+exit-code: 1
+severity:
+  - HIGH
+  - CRITICAL
+scan:
+
+config:
+  misconfig-scanners: Terraform
+
+ignorefile: .trivyignore

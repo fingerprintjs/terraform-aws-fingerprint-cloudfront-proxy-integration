@@ -1,0 +1,23 @@
+name: Run Trivy
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - main
+      - rc
+
+jobs:
+  build:
+    name: Scan
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner in config mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          exit-code: '1'
+          trivy-config: trivy.yaml
