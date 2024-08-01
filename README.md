@@ -159,8 +159,3 @@
 
 > [!NOTE]
 > If your project doesn't use `hashicorp/random` module, then you will need to run `terraform init -upgrade`.
-
-## Todo
-
-- [ ] create a public repo on company account with name `terraform-aws-fingerprint-cloudfront-integration`
-- [ ] publish on Hashicorp account
