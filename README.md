@@ -1,9 +1,30 @@
+<p align="center">
+  <a href="https://fingerprint.com">
+    <picture>
+     <source media="(prefers-color-scheme: dark)" srcset="https://fingerprintjs.github.io/home/resources/logo_light.svg" />
+     <source media="(prefers-color-scheme: light)" srcset=https://fingerprintjs.github.io/home/resources/logo_dark.svg" />
+     <img src="https://fingerprintjs.github.io/home/resources/logo_dark.svg" alt="Fingerprint logo" width="312px" />
+   </picture>
+  </a>
+</p>
+
+<p align="center">
+<a href="https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration"><img src="https://img.shields.io/github/v/release/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration" alt="Current version"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/:license-mit-blue.svg" alt="MIT license"></a>
+<a href="https://discord.gg/39EpE2neBg"><img src="https://img.shields.io/discord/852099967190433792?style=logo&label=Discord&logo=Discord&logoColor=white" alt="Discord server"></a>
+</p>
+
+> **Warning**
+> This project is in the Private Beta phase. For more information, reach out
+> to [support@fingerprint.com](mailto:support@fingerprint.com).
+
 ## How to Install
 
 ### Using a new CloudFront distribution
 
 1. Create a new directory `mkdir fingerprint_integration` and go inside `cd fingerprint_integration`
-2. Create a file `touch fingerprint.tf` and add below content, do not forget to replace placeholders (`AGENT_DOWNLOAD_PATH_HERE`, `RESULT_PATH_HERE`, `PROXY_SECRET_HERE`):
+2. Create a file `touch fingerprint.tf` and add below content, do not forget to replace
+   placeholders (`AGENT_DOWNLOAD_PATH_HERE`, `RESULT_PATH_HERE`, `PROXY_SECRET_HERE`):
      ```terraform
      module "fingerprint_cloudfront_integration" {
        source = "git@github.com:necipallef/terraform-module-proxy-lambda.git/?ref=v0.7.1"
@@ -13,7 +34,8 @@
        fpjs_shared_secret   = "PROXY_SECRET_HERE"
      }
      ```
-3. Create a file called `cloudfront_distribution.tf` and add below content (feel free to make any changes that makes sense for your setup):
+3. Create a file called `cloudfront_distribution.tf` and add below content (feel free to make any changes that makes
+   sense for your setup):
    ```terraform
 
     resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
@@ -67,13 +89,17 @@
       }
     }
    ```
-   If you wish to connect a custom domain for first-party benefits, consider changing `viewer_certificate` field accordingly. Refer to [official documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution) by HashiCorp for further customization.
+   If you wish to connect a custom domain for first-party benefits, consider changing `viewer_certificate` field
+   accordingly. Refer
+   to [official documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution)
+   by HashiCorp for further customization.
 4. Run `terraform init`
 5. Run `terraform plan`, if all looks good run `terraform apply`
 
 ### Using existing CloudFront distribution
 
-1. Create a file called `fingerprint.tf` and add below content, do not forget to replace placeholders (`AGENT_DOWNLOAD_PATH_HERE`, `RESULT_PATH_HERE`, `PROXY_SECRET_HERE`):
+1. Create a file called `fingerprint.tf` and add below content, do not forget to replace
+   placeholders (`AGENT_DOWNLOAD_PATH_HERE`, `RESULT_PATH_HERE`, `PROXY_SECRET_HERE`):
     ```terraform
     module "fingerprint_cloudfront_integration" {
         source = "git@github.com:necipallef/terraform-module-proxy-lambda.git/?ref=v0.7.1"
@@ -83,7 +109,8 @@
         fpjs_shared_secret   = "PROXY_SECRET_HERE"
     }
     ```
-2. Go to your CloudFront distribution block and add below content, do not forget to replace placeholders (`YOUR_INTEGRATION_PATH_HERE`):
+2. Go to your CloudFront distribution block and add below content, do not forget to replace
+   placeholders (`YOUR_INTEGRATION_PATH_HERE`):
     ```terraform
     resource "aws_cloudfront_distribution" "cloudfront_dist" {
       // more code here
@@ -134,5 +161,6 @@
 > If your project doesn't use `hashicorp/random` module, then you will need to run `terraform init -upgrade`.
 
 ## Todo
+
 - [ ] create a public repo on company account with name `terraform-aws-fingerprint-cloudfront-integration`
 - [ ] publish on Hashicorp account
