@@ -46,9 +46,9 @@ resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
     }
   }
 
-  aliases = ["${var.subdomain}.${var.root_domain}"]
+  aliases = [var.proxy_subdomain_domain]
   viewer_certificate {
-    acm_certificate_arn = "arn:aws:acm:us-east-1:013357491684:certificate/c3ffee8c-071b-4ff8-bec2-e222eff602bc"
+    acm_certificate_arn = var.certificate_arn
     ssl_support_method  = "sni-only"
   }
 
@@ -64,7 +64,7 @@ resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
 # (comment this out if you don't want to do that for now)
 resource "aws_route53_record" "cloudfront_terraform_new_distribution_record" {
   zone_id = var.domain_zone_id
-  name    = "${var.subdomain}.${var.root_domain}"
+  name    = var.proxy_subdomain_domain
   type    = "CNAME"
   ttl     = 300
   records = [aws_cloudfront_distribution.fpjs_cloudfront_distribution.domain_name]

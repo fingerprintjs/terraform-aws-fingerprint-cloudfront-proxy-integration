@@ -13,19 +13,18 @@ variable "fpjs_get_result_path" {
   type        = string
 }
 
-variable "subdomain" {
-  description = "The subdomain for the CloudFront distribution"
+variable "proxy_subdomain_domain" {
+  description = "The subdomain for the CloudFront distribution, including the root domain of your website, for example `metrics.yourwebsite.com`"
   type        = string
-  # default   = "metrics"
 }
 
-variable "root_domain" {
-  description = "The root domain for the CloudFront distribution"
-  type        = string
-  # default     = "yourwebsite.com"
-}
 
 variable "domain_zone_id" {
   description = "Zone ID of the domain for the CloudFront distribution"
+  type        = string
+}
+
+variable "certificate_arn" {
+  description = "ARN of the domain certificate for the CloudFront distribution"
   type        = string
 }
