@@ -38,3 +38,6 @@ terraform.rc
 
 # Ignore IDE
 .idea/
+
+# Ignore Terraform locks in examples folder
+examples/**/*.lock.hcl
