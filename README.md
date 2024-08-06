@@ -53,7 +53,7 @@ See [CloudFront Proxy Integration guide](https://dev.fingerprint.com/docs/cloudf
 
 ## Examples
 
-This repository also includes the following Terraform project examples:
+This repository also includes the following Terraform project examples. Use these examples as a reference, and make sure to follow best practices when provisioning CloudFront distributions:
 
 - [Adding the Fingerprint proxy integration to an existing CloudFront distribution](./examples//existing-ditribution/) (recommended)
 - [Creating a new CloudFront distribution just for the Fingerprint proxy integration](./examples/standalone-distribution/)
