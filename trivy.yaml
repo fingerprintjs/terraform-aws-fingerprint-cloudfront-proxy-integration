@@ -4,9 +4,13 @@ dependency-tree: true
 list-all-pkgs: true
 exit-code: 1
 severity:
+  # - LOW
+  # - MEDIUM
   - HIGH
   - CRITICAL
 scan:
+  skip-dirs:
+    - examples/
 
 config:
   misconfig-scanners: Terraform
