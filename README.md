@@ -2,7 +2,7 @@
   <a href="https://fingerprint.com">
     <picture>
      <source media="(prefers-color-scheme: dark)" srcset="https://fingerprintjs.github.io/home/resources/logo_light.svg" />
-     <source media="(prefers-color-scheme: light)" srcset=https://fingerprintjs.github.io/home/resources/logo_dark.svg" />
+     <source media="(prefers-color-scheme: light)" srcset="https://fingerprintjs.github.io/home/resources/logo_dark.svg" />
      <img src="https://fingerprintjs.github.io/home/resources/logo_dark.svg" alt="Fingerprint logo" width="312px" />
    </picture>
   </a>
@@ -14,148 +14,54 @@
 <a href="https://discord.gg/39EpE2neBg"><img src="https://img.shields.io/discord/852099967190433792?style=logo&label=Discord&logo=Discord&logoColor=white" alt="Discord server"></a>
 </p>
 
-> **Warning**
-> This project is in the Private Beta phase. For more information, reach out
-> to [support@fingerprint.com](mailto:support@fingerprint.com).
+# Fingerprint Pro CloudFront Integration (Terraform module)
 
-## How to Install
+[Fingerprint](https://fingerprint.com/) is a device intelligence platform offering 99.5% accurate visitor identification.
 
-### Using a new CloudFront distribution
+Fingerprint Pro CloudFront Integration is responsible for
 
-1. Create a new directory `mkdir fingerprint_integration` and go inside `cd fingerprint_integration`
-2. Create a file `touch fingerprint.tf` and add below content, do not forget to replace
-   placeholders (`AGENT_DOWNLOAD_PATH_HERE`, `RESULT_PATH_HERE`, `PROXY_SECRET_HERE`):
-     ```terraform
-     module "fingerprint_cloudfront_integration" {
-       source = "git@github.com:necipallef/terraform-module-proxy-lambda.git/?ref=v0.7.1"
-     
-       fpjs_agent_download_path = "AGENT_DOWNLOAD_PATH_HERE"
-       fpjs_get_result_path     = "RESULT_PATH_HERE"
-       fpjs_shared_secret   = "PROXY_SECRET_HERE"
-     }
-     ```
-3. Create a file called `cloudfront_distribution.tf` and add below content (feel free to make any changes that makes
-   sense for your setup):
-   ```terraform
+- Proxying download requests of the latest Fingerprint Pro JS Agent between your site and Fingerprint CDN.
+- Proxying identification requests and responses between your site and Fingerprint Pro's APIs.
 
-    resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
-      comment = "Fingerprint distribution (created via Terraform)"
-    
-      origin {
-        domain_name = module.fingerprint_cloudfront_integration.fpjs_origin_name
-        origin_id   = module.fingerprint_cloudfront_integration.fpjs_origin_id
-        custom_origin_config {
-          origin_protocol_policy = "https-only"
-          http_port              = 80
-          https_port             = 443
-          origin_ssl_protocols   = ["TLSv1.2"]
-        }
-        custom_header {
-          name  = "FPJS_SECRET_NAME"
-          value = module.fingerprint_cloudfront_integration.fpjs_secret_manager_arn
-        }
-      }
-    
-      enabled = true
-    
-      http_version = "http1.1"
-    
-      price_class = "PriceClass_100"
-    
-      default_cache_behavior {
-        allowed_methods          = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
-        cached_methods           = ["GET", "HEAD"]
-        cache_policy_id          = module.fingerprint_cloudfront_integration.fpjs_cache_policy_id
-        origin_request_policy_id = module.fingerprint_cloudfront_integration.fpjs_origin_request_policy_id
-        target_origin_id         = module.fingerprint_cloudfront_integration.fpjs_origin_id
-        viewer_protocol_policy   = "https-only"
-        compress                 = true
-    
-        lambda_function_association {
-          event_type   = "origin-request"
-          lambda_arn   = module.fingerprint_cloudfront_integration.fpjs_proxy_lambda_arn
-          include_body = true
-        }
-      }
-    
-      viewer_certificate {
-        cloudfront_default_certificate = true
-      }
-    
-      restrictions {
-        geo_restriction {
-          restriction_type = "none"
-        }
-      }
-    }
-   ```
-   If you wish to connect a custom domain for first-party benefits, consider changing `viewer_certificate` field
-   accordingly. Refer
-   to [official documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution)
-   by HashiCorp for further customization.
-4. Run `terraform init`
-5. Run `terraform plan`, if all looks good run `terraform apply`
+This [improves](https://dev.fingerprint.com/docs/cloudfront-proxy-integration#the-benefits-of-using-the-cloudfront-integration) both accuracy and reliability of visitor identification and bot detection on your site.
 
-### Using existing CloudFront distribution
+You can install the CloudFront proxy integration using a [CloudFormation template](https://github.com/fingerprintjs/fingerprint-pro-cloudfront-integration) or as a Terraform module included in this repository. For more details, see the [full documentation](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2).
 
-1. Create a file called `fingerprint.tf` and add below content, do not forget to replace
-   placeholders (`AGENT_DOWNLOAD_PATH_HERE`, `RESULT_PATH_HERE`, `PROXY_SECRET_HERE`):
-    ```terraform
-    module "fingerprint_cloudfront_integration" {
-        source = "git@github.com:necipallef/terraform-module-proxy-lambda.git/?ref=v0.7.1"
+## Requirements
 
-        fpjs_agent_download_path = "AGENT_DOWNLOAD_PATH_HERE"
-        fpjs_get_result_path     = "RESULT_PATH_HERE"
-        fpjs_shared_secret   = "PROXY_SECRET_HERE"
-    }
-    ```
-2. Go to your CloudFront distribution block and add below content, do not forget to replace
-   placeholders (`YOUR_INTEGRATION_PATH_HERE`):
-    ```terraform
-    resource "aws_cloudfront_distribution" "cloudfront_dist" {
-      // more code here
-    
-      #region fingerprint start
-    
-      origin {
-        domain_name = module.fingerprint_cloudfront_integration.fpjs_origin_name
-        origin_id   = module.fingerprint_cloudfront_integration.fpjs_origin_id
-        custom_origin_config {
-          origin_protocol_policy = "https-only"
-          http_port              = 80
-          https_port             = 443
-          origin_ssl_protocols   = ["TLSv1.2"]
-        }
-        custom_header {
-          name  = "FPJS_SECRET_NAME"
-          value = module.fingerprint_cloudfront_integration.fpjs_secret_manager_arn
-        }
-      }
-    
-      ordered_cache_behavior {
-        path_pattern = "YOUR_INTEGRATION_PATH_HERE/*"
-    
-        allowed_methods          = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
-        cached_methods           = ["GET", "HEAD"]
-        cache_policy_id          = module.fingerprint_cloudfront_integration.fpjs_cache_policy_id
-        origin_request_policy_id = module.fingerprint_cloudfront_integration.fpjs_origin_request_policy_id
-        target_origin_id         = module.fingerprint_cloudfront_integration.fpjs_origin_id
-        viewer_protocol_policy   = "https-only"
-        compress                 = true
-    
-        lambda_function_association {
-          event_type   = "origin-request"
-          lambda_arn   = module.fingerprint_cloudfront_integration.fpjs_proxy_lambda_arn
-          include_body = true
-        }
-      }
-    
-      #endregion
-    
-      // more code here
-    }
-    ```
-3. Run `terraform plan`, if all looks good run `terraform apply`
+- AWS Account.
+- Access to an IAM role in AWS with privileges to manage IAM roles, CloudFront distributions, Secrets Manager, Lambda Functions, and S3 Read Only access.
+- Terraform project using the [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) with the IAM role described above.
+- [Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli).
 
-> [!NOTE]
-> If your project doesn't use `hashicorp/random` module, then you will need to run `terraform init -upgrade`.
+> [!IMPORTANT]  
+> The AWS CloudFront Proxy Integration is exclusively supported for customers on the Enterprise Plan. Other customers are encouraged to use [Custom subdomain setup](https://dev.fingerprint.com/docs/custom-subdomain-setup) or [Cloudflare Proxy Integration](https://dev.fingerprint.com/docs/cloudflare-integration).
+
+> [!WARNING]  
+> The underlying data contract in the identification logic can change to keep up with browser updates. Using the AWS CloudFront Proxy Integration might require occasional manual updates on your side. Ignoring these updates will lead to lower accuracy or service disruption.
+
+## How to install
+
+To set up CloudFront integration using Terraform, you need to:
+
+1. Add the Fingerprint Terraform module to your Terraform project.
+2. Use the module in the configuration of your CloudFront distribution.
+3. Deploy your Terraform project.
+4. Configure the Fingerprint Pro JS Agent on your site to communicate with your created Lambda@Edge function using the [scriptUrlPattern](https://dev.fingerprint.com/docs/js-agent#scripturlpattern) and [endpoint](https://dev.fingerprint.com/docs/js-agent#endpoint) parameters.
+
+See [CloudFront Proxy Integration guide](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2) in our documentation for step-by-step instructions and follow the [Terraform installation method](https://dev.fingerprint.com/docs/aws-cloudfront-integration-via-terraform). If you have any questions, reach out to our [support team](https://fingerprint.com/support/).
+
+## Examples
+
+This repository also includes the following Terraform project examples:
+
+- [Adding the Fingerprint proxy integration to an existing CloudFront distribution](./examples//existing-ditribution/) (recommended)
+- [Creating a new CloudFront distribution just for the Fingerprint proxy integration](./examples/standalone-distribution/)
+
+## How to update
+
+The Terraform module does include any mechanism for automatic updates. To keep your integration up to date, please run `terraform apply` regularly.
+
+## License
+
+This project is licensed under the MIT license. See the [LICENSE](/LICENSE) file for more info.

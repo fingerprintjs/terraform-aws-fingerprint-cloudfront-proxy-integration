@@ -1,0 +1,8 @@
+fpjs_shared_secret         = "YOUR_PROXY_SECRET_CREATED_IN_FINGERPRINT_DASHBOARD"
+fpjs_agent_download_path   = "463N7"
+fpjs_get_result_path       = "r35U17"
+fpjs_behavior_path         = "fpj5"
+domain_zone_id             = "ZONE_ID_OF_YOUR_DOMAIN_IN_AWS"
+website_domain             = "yourwebsite.com"
+website_origin_domain_name = "your-website-origin.s3.amazonaws.com"
+certificate_arn            = "ARN_OF_THE_CERTIFICATE_OF_YOUR_DOMAIN_IN_AWS"
