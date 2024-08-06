@@ -1,6 +1,14 @@
+# Example CloudFront Distribution. DO NOT USE AS-IS, and make sure to follow best practices before releasing to the production.
 resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
   comment = "Fingerprint proxy integration distribution (created via Terraform)"
 
+  enabled = true
+
+  http_version = "http1.1"
+
+  price_class = "PriceClass_100"
+
+  #region Fingerprint CloudFront Integration start
   origin {
     domain_name = module.fingerprint_cloudfront_integration.fpjs_origin_name
     origin_id   = module.fingerprint_cloudfront_integration.fpjs_origin_id
@@ -15,12 +23,6 @@ resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
       value = module.fingerprint_cloudfront_integration.fpjs_secret_manager_arn
     }
   }
-
-  enabled = true
-
-  http_version = "http1.1"
-
-  price_class = "PriceClass_100"
 
   default_cache_behavior {
     allowed_methods          = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
@@ -37,8 +39,7 @@ resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
       include_body = true
     }
   }
-
-
+  #endregion
 
   restrictions {
     geo_restriction {
@@ -60,7 +61,7 @@ resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
   # }
 }
 
-# You can make the distribution avaialable on a subdomain of your website
+# You can make the distribution available on a subdomain of your website
 # (comment this out if you don't want to do that for now)
 resource "aws_route53_record" "cloudfront_terraform_new_distribution_record" {
   zone_id = var.domain_zone_id

@@ -1,3 +1,4 @@
+# Example CloudFront Distribution. DO NOT USE AS-IS, and make sure to follow best practices before releasing to the production.
 resource "aws_cloudfront_distribution" "main_website_distribution" {
   enabled             = true
   is_ipv6_enabled     = true
