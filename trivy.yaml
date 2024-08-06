@@ -3,6 +3,9 @@ format: table
 dependency-tree: true
 list-all-pkgs: true
 exit-code: 1
+image:
+  skip-dirs:
+    - examples/*
 severity:
   - HIGH
   - CRITICAL
