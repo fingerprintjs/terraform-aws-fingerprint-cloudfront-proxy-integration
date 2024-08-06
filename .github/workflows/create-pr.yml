@@ -1,4 +1,4 @@
-name: Create PR
+name: Create PR (for main and rc)
 
 on:
   release:
