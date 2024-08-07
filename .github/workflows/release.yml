@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-release:
     name: 'Build project, run CI checks and publish new release'
-    uses: fingerprintjs/dx-team-toolkit/.github/workflows/release-typescript-project.yml@v1
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/release-server-sdk.yml@v1
     with:
       nodeVersion: 20
       appId: ${{ vars.APP_ID }}
