@@ -4,3 +4,4 @@
 ### Features
 
 * v0.2.0 ([4fa25f3](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/4fa25f30deae9272143f822749d055124e0f69f5))
+
