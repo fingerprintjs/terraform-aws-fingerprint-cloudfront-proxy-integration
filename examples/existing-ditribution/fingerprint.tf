@@ -1,5 +1,5 @@
 module "fingerprint_cloudfront_integration" {
-  source = "git@github.com:fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration.git"
+  source = "fingerprintjs/fingerprint-cloudfront-proxy-integration/aws"
 
   fpjs_agent_download_path = var.fpjs_agent_download_path
   fpjs_get_result_path     = var.fpjs_get_result_path
