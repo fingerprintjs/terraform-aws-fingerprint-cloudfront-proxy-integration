@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+<a href="https://registry.terraform.io/modules/fingerprintjs/fingerprint-cloudfront-proxy-integration/aws/latest"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.terraform.io%2Fv2%2Fmodules%2Ffingerprintjs%2Ffingerprint-cloudfront-proxy-integration%2Faws%3Finclude%3Dlatest-version&query=%24.included%5B0%5D.attributes.version&prefix=v&label=Terraform" alt="Current version"></a>
 <a href="https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration"><img src="https://img.shields.io/github/v/release/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration" alt="Current version"></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/:license-mit-blue.svg" alt="MIT license"></a>
 <a href="https://discord.gg/39EpE2neBg"><img src="https://img.shields.io/discord/852099967190433792?style=logo&label=Discord&logo=Discord&logoColor=white" alt="Discord server"></a>
@@ -21,7 +22,7 @@ Fingerprint Pro CloudFront Integration is responsible for
 
 This [improves](https://dev.fingerprint.com/docs/cloudfront-proxy-integration#the-benefits-of-using-the-cloudfront-integration) both accuracy and reliability of visitor identification and bot detection on your site.
 
-You can install the CloudFront proxy integration using a [CloudFormation template](https://github.com/fingerprintjs/fingerprint-pro-cloudfront-integration) or as a Terraform module included in this repository. For more details, see the [full documentation](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2).
+You can install the CloudFront proxy integration using a [CloudFormation template](https://github.com/fingerprintjs/fingerprint-pro-cloudfront-integration) or as [a Terraform module](https://registry.terraform.io/modules/fingerprintjs/fingerprint-cloudfront-proxy-integration/aws/latest) included in this repository. For more details, see the [full documentation](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2).
 
 ## Requirements
 
@@ -57,6 +58,11 @@ This repository also includes the following Terraform project examples. Use thes
 ## How to update
 
 The Terraform module does include any mechanism for automatic updates. To keep your integration up to date, please run `terraform apply` regularly.
+
+## More resources
+
+- [Documentation](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2)
+- [Terraform Registry page](https://registry.terraform.io/modules/fingerprintjs/fingerprint-cloudfront-proxy-integration/aws/latest)
 
 ## License
 
