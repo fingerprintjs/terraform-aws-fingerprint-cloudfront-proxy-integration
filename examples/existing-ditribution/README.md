@@ -19,4 +19,4 @@ This is a simplified example. Use it as a reference but make sure to **adjust th
 
 ### Additional resources
 
-- [Fingerprint CloudFront Proxy Integration](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2)
+- [Fingerprint CloudFront Proxy Integration documentation](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2)
