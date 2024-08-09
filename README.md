@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://fingerprint.com">
-    <img src="assets/logo_grey.svg" alt="Fingerprint logo" width="312px" />
+    <img src="https://raw.githubusercontent.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/main/assets/logo_grey.svg" alt="Fingerprint logo" width="312px" />
   </a>
 </p>
 
