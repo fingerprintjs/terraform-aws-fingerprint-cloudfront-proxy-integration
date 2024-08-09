@@ -5,6 +5,7 @@
 </p>
 
 <p align="center">
+<a href="https://registry.terraform.io/modules/fingerprintjs/fingerprint-cloudfront-proxy-integration/aws/latest"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.terraform.io%2Fv2%2Fmodules%2Ffingerprintjs%2Ffingerprint-cloudfront-proxy-integration%2Faws%3Finclude%3Dlatest-version&query=%24.included%5B0%5D.attributes.version&prefix=v&label=Terraform" alt="Current version"></a>
 <a href="https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration"><img src="https://img.shields.io/github/v/release/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration" alt="Current version"></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/:license-mit-blue.svg" alt="MIT license"></a>
 <a href="https://discord.gg/39EpE2neBg"><img src="https://img.shields.io/discord/852099967190433792?style=logo&label=Discord&logo=Discord&logoColor=white" alt="Discord server"></a>
