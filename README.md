@@ -21,7 +21,7 @@ Fingerprint Pro CloudFront Integration is responsible for
 
 This [improves](https://dev.fingerprint.com/docs/cloudfront-proxy-integration#the-benefits-of-using-the-cloudfront-integration) both accuracy and reliability of visitor identification and bot detection on your site.
 
-You can install the CloudFront proxy integration using a [CloudFormation template](https://github.com/fingerprintjs/fingerprint-pro-cloudfront-integration) or as a Terraform module included in this repository. For more details, see the [full documentation](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2).
+You can install the CloudFront proxy integration using a [CloudFormation template](https://github.com/fingerprintjs/fingerprint-pro-cloudfront-integration) or as [a Terraform module](https://registry.terraform.io/modules/fingerprintjs/fingerprint-cloudfront-proxy-integration/aws/latest) included in this repository. For more details, see the [full documentation](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2).
 
 ## Requirements
 
@@ -57,6 +57,11 @@ This repository also includes the following Terraform project examples. Use thes
 ## How to update
 
 The Terraform module does include any mechanism for automatic updates. To keep your integration up to date, please run `terraform apply` regularly.
+
+## More resources
+
+- [Documentation](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2)
+- [Terraform Registry page](https://registry.terraform.io/modules/fingerprintjs/fingerprint-cloudfront-proxy-integration/aws/latest)
 
 ## License
 
