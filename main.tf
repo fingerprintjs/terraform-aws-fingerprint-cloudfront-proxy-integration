@@ -87,8 +87,9 @@ resource "aws_iam_role_policy" "fpjs_proxy_lambda" {
 }
 
 resource "aws_iam_role" "fpjs_proxy_lambda" {
-  name               = "fingerprint-pro-lambda-role-${local.integration_id}"
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+  name                 = "fingerprint-pro-lambda-role-${local.integration_id}"
+  permissions_boundary = var.fpjs_proxy_lambda_role_permissions_boundary_arn
+  assume_role_policy   = data.aws_iam_policy_document.assume_role.json
 }
 
 data "aws_s3_object" "fpjs_integration_s3_bucket" {
