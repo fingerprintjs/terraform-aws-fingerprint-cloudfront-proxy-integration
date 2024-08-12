@@ -1,3 +1,19 @@
+## [0.5.0](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v0.4.0...v0.5.0) (2024-08-12)
+
+
+### Features
+
+* ability to add permissions_boundary to proxy lambda ([372ba9f](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/372ba9faf3c390f2274612220ce39e08cba58f40))
+* proxy lambda ability to create logs ([8896610](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/8896610bfc1b2dfa7604ece452824ed1df6fb1ce))
+
+
+### Bug Fixes
+
+* add missing min required terraform version ([6e358e4](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/6e358e43d62449372ab7a416cd47784e4abb0a1b))
+* add missing min required terraform version ([0e9e0a7](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/0e9e0a7fd2cd956c49afdeb2e5d4778b9e95338e))
+* add missing min required terraform version ([336a0f6](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/336a0f6a44eca2b941508efd6d465b943d0b2eec))
+* remove validation from fpjs_proxy_lambda_role_permissions_boundary_arn ([830c0f4](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/830c0f48202399b7cacaac357451ba3101072018))
+
 ## [0.5.0-rc.1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v0.4.0...v0.5.0-rc.1) (2024-08-12)
 
 
