@@ -1,4 +1,6 @@
 terraform {
+  required_version = ">= 1.0"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -66,6 +68,25 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
+resource "aws_iam_role_policy" "fpjs_proxy_lambda_execution_policy" {
+  name = "LambdaExecutionPolicy"
+  role = aws_iam_role.fpjs_proxy_lambda.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+        Effect   = "Allow"
+        Resource = "arn:aws:logs:*:*:*"
+    }]
+  })
+}
+
 resource "aws_iam_role_policy" "fpjs_proxy_lambda" {
   name = "AWSSecretAccess"
   role = aws_iam_role.fpjs_proxy_lambda.id
@@ -85,8 +106,10 @@ resource "aws_iam_role_policy" "fpjs_proxy_lambda" {
 }
 
 resource "aws_iam_role" "fpjs_proxy_lambda" {
-  name               = "fingerprint-pro-lambda-role-${local.integration_id}"
-  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+  name                 = "fingerprint-pro-lambda-role-${local.integration_id}"
+  permissions_boundary = var.fpjs_proxy_lambda_role_permissions_boundary_arn
+  assume_role_policy   = data.aws_iam_policy_document.assume_role.json
+  managed_policy_arns  = ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
 }
 
 data "aws_s3_object" "fpjs_integration_s3_bucket" {
