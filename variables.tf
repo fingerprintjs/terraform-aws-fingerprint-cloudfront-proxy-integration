@@ -28,3 +28,9 @@ variable "fpjs_shared_secret" {
     error_message = "value should only consist of alphanumeric values and dashes"
   }
 }
+
+variable "fpjs_proxy_lambda_role_permissions_boundary_arn" {
+  type        = string
+  description = "permissions boundary ARN for the role assumed by the Proxy lambda"
+  default     = null
+}
