@@ -1,3 +1,10 @@
+## [0.6.0-rc.1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v0.5.0...v0.6.0-rc.1) (2024-08-13)
+
+
+### Features
+
+* proxy lambda description, timeout and memory size config ([aebb1c1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/aebb1c132ae44082b17effaf4f8d75cfc271a559))
+
 ## [0.5.0](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v0.4.0...v0.5.0) (2024-08-12)
 
 
