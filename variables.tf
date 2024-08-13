@@ -10,7 +10,7 @@ variable "fpjs_get_result_path" {
 
 variable "fpjs_agent_download_path" {
   type        = string
-  description = "request path used to send ProCDN requests (aka FPJS_AGENT_DOWNLOAD_PATH)"
+  description = "request path used to send agent download requests (aka FPJS_AGENT_DOWNLOAD_PATH)"
 
   validation {
     condition     = can(regex("^([a-zA-Z0-9\\-])+$", var.fpjs_agent_download_path))
@@ -31,6 +31,6 @@ variable "fpjs_shared_secret" {
 
 variable "fpjs_proxy_lambda_role_permissions_boundary_arn" {
   type        = string
-  description = "permissions boundary ARN for the role assumed by the Proxy lambda"
+  description = "Permissions boundary ARN for the role assumed by the Proxy lambda. Make sure your permissions boundary allows the function to access the Secrets Manager secret created for the integration (`secretsmanager:GetSecretValue`) and create logs (`logs:CreateLogStream`, `logs:CreateLogGroup`, `logs:PutLogEvents`)."
   default     = null
 }
