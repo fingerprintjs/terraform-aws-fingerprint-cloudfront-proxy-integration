@@ -118,12 +118,15 @@ data "aws_s3_object" "fpjs_integration_s3_bucket" {
 }
 
 resource "aws_lambda_function" "fpjs_proxy_lambda" {
+  description      = "Fingerprint Proxy Lambda@Edge function"
   s3_bucket        = data.aws_s3_object.fpjs_integration_s3_bucket.bucket
   s3_key           = data.aws_s3_object.fpjs_integration_s3_bucket.key
   function_name    = "fingerprint-pro-cloudfront-lambda-${local.integration_id}"
   role             = aws_iam_role.fpjs_proxy_lambda.arn
   handler          = "fingerprintjs-pro-cloudfront-lambda-function.handler"
   source_code_hash = data.aws_s3_object.fpjs_integration_s3_bucket.etag
+  memory_size      = 128
+  timeout          = 10
 
   runtime = "nodejs20.x"
 
