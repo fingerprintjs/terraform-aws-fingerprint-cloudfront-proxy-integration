@@ -68,25 +68,6 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-resource "aws_iam_role_policy" "fpjs_proxy_lambda_execution_policy" {
-  name = "LambdaExecutionPolicy"
-  role = aws_iam_role.fpjs_proxy_lambda.id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = [
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents"
-        ]
-        Effect   = "Allow"
-        Resource = "arn:aws:logs:*:*:*"
-    }]
-  })
-}
-
 resource "aws_iam_role_policy" "fpjs_proxy_lambda" {
   name = "AWSSecretAccess"
   role = aws_iam_role.fpjs_proxy_lambda.id
