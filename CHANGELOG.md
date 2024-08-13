@@ -1,3 +1,14 @@
+## [1.0.0-rc.1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v0.6.0...v1.0.0-rc.1) (2024-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* v1.0.0
+
+### Features
+
+* v1.0.0 ([ce61945](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/ce61945ddfc4a51fd7d8c4edf5e790dfc7117aad))
+
 ## [0.6.0](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v0.5.0...v0.6.0) (2024-08-13)
 
 
