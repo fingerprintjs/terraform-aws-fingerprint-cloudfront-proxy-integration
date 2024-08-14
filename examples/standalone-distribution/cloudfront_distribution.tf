@@ -47,26 +47,25 @@ resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
     }
   }
 
-  aliases = [var.proxy_subdomain_domain]
-  viewer_certificate {
-    acm_certificate_arn = var.certificate_arn
-    ssl_support_method  = "sni-only"
-  }
-
-  # If don't want to serve the distribution from a subdomain for now, use the default certificate instead
-  # (comment out `viewer_certificate` and `aliases` above and use the `viewer_certificate` below)
-
+  # You can make the distribution available on a subdomain of your website
+  # Uncomment the following and define the referenced variables
+  # aliases = [var.proxy_subdomain_domain]
   # viewer_certificate {
-  #   cloudfront_default_certificate = true
+  #   acm_certificate_arn = var.certificate_arn
+  #   ssl_support_method  = "sni-only"
   # }
+
+
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
 }
 
 # You can make the distribution available on a subdomain of your website
-# (comment this out if you don't want to do that for now)
-resource "aws_route53_record" "cloudfront_terraform_new_distribution_record" {
-  zone_id = var.domain_zone_id
-  name    = var.proxy_subdomain_domain
-  type    = "CNAME"
-  ttl     = 300
-  records = [aws_cloudfront_distribution.fpjs_cloudfront_distribution.domain_name]
-}
+# resource "aws_route53_record" "cloudfront_terraform_new_distribution_record" {
+#   zone_id = var.domain_zone_id
+#   name    = var.proxy_subdomain_domain
+#   type    = "CNAME"
+#   ttl     = 300
+#   records = [aws_cloudfront_distribution.fpjs_cloudfront_distribution.domain_name]
+# }
