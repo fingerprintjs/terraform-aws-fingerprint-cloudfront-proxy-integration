@@ -1,12 +1,22 @@
-# Example CloudFront Distribution. DO NOT USE AS-IS, and make sure to follow best practices before releasing to the production.
+
+locals {
+  # TODO: When adapting this example, replace this with your actual website origin (directly or through a `terraform.tfvars` file)
+  website_origin_domain_name = "yourwebsite.com"
+  # TODO: When adapting this example, replace this with the path segment you want for your proxy integration (directly or through a `terraform.tfvars` file)
+  #       Avoid ad blocker triggers like "fingerprint", "track", etc., random value is best
+  fpjs_behavior_path = "metrics"
+}
+
+# Example CloudFront Distribution. 
+# DO NOT USE AS-IS, Make sure to adjust the code to your needs and security practices before releasing to production.
 resource "aws_cloudfront_distribution" "main_website_distribution" {
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "CloudFront distribution for ${var.website_origin_domain_name}"
+  comment             = "CloudFront distribution for ${local.website_origin_domain_name}"
   default_root_object = "index.html"
 
   origin {
-    domain_name = var.website_origin_domain_name
+    domain_name = local.website_origin_domain_name
     origin_id   = "your-website"
 
     custom_origin_config {
@@ -41,13 +51,6 @@ resource "aws_cloudfront_distribution" "main_website_distribution" {
     }
   }
 
-  aliases = [var.website_domain]
-
-  viewer_certificate {
-    acm_certificate_arn = var.certificate_arn
-    ssl_support_method  = "sni-only"
-  }
-
   #region Fingerprint CloudFront Integration start
   origin {
     domain_name = module.fingerprint_cloudfront_integration.fpjs_origin_name
@@ -65,7 +68,7 @@ resource "aws_cloudfront_distribution" "main_website_distribution" {
   }
 
   ordered_cache_behavior {
-    path_pattern = "${var.fpjs_behavior_path}/*"
+    path_pattern = "${local.fpjs_behavior_path}/*"
 
     allowed_methods          = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
     cached_methods           = ["GET", "HEAD"]
@@ -82,18 +85,34 @@ resource "aws_cloudfront_distribution" "main_website_distribution" {
     }
   }
   #endregion
-}
 
-
-resource "aws_route53_record" "apex_domain" {
-  zone_id = var.domain_zone_id
-  name    = var.website_domain
-  type    = "A"
-
-  alias {
-    name                   = aws_cloudfront_distribution.main_website_distribution.domain_name
-    zone_id                = aws_cloudfront_distribution.main_website_distribution.hosted_zone_id
-    evaluate_target_health = false
+  viewer_certificate {
+    cloudfront_default_certificate = true
   }
+
+  # You can serve the distribution from your own domain
+  #  - Uncomment the `aliases` and `viewer_certificate` below
+  #  - Uncomment the 'aws_route53_record' below
+  #  - Uncomment the DNS-related variables in `variables.tf`
+  #  - Define the referenced variables in a `terraform.tfvars` file
+  #  - Remove the default `viewer_certificate` above
+
+  # aliases = [var.website_domain]
+  # viewer_certificate {
+  #   acm_certificate_arn = var.certificate_arn
+  #   ssl_support_method  = "sni-only"
+  # }
 }
+
+# resource "aws_route53_record" "apex_domain" {
+#   zone_id = var.domain_zone_id
+#   name    = var.website_domain
+#   type    = "A"
+
+#   alias {
+#     name                   = aws_cloudfront_distribution.main_website_distribution.domain_name
+#     zone_id                = aws_cloudfront_distribution.main_website_distribution.hosted_zone_id
+#     evaluate_target_health = false
+#   }
+# }
 

@@ -8,18 +8,20 @@ variable "fpjs_agent_download_path" {
   // https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2#step-2-create-path-variables
   description = "The Fingerprint agent download will be proxied through this path"
   type        = string
+  default     = "agent"
 }
 
 variable "fpjs_get_result_path" {
   // https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2#step-2-create-path-variables
   description = "The Fingerprint identification request will be proxied through this path"
   type        = string
+  default     = "result"
 }
 
 /**
  * The following variables are only relevant for this example. 
- * - They are not relevant to the module itself
- * - They are optional, uncomment them out if you want to add a subdomain for the CloudFront distribution 
+ * - They are not requiered for the module itself
+ * - They are optional, uncomment them out if you want adapt the example including adding a subdomain for the CloudFront distribution 
  */
 
 # variable "proxy_subdomain_domain" {
