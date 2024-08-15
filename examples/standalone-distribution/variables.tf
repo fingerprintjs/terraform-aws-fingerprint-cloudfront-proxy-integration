@@ -16,11 +16,16 @@ variable "fpjs_get_result_path" {
   type        = string
 }
 
+/**
+ * The following variables are only relevant for this example. 
+ * - They are not relevant to the module itself
+ * - They are optional, uncomment them out if you want to add a subdomain for the CloudFront distribution 
+ */
+
 # variable "proxy_subdomain_domain" {
 #   description = "The subdomain for the CloudFront distribution, including the root domain of your website, for example `metrics.yourwebsite.com`"
 #   type        = string
 # }
-
 
 # variable "domain_zone_id" {
 #   description = "Zone ID of the domain for the CloudFront distribution"

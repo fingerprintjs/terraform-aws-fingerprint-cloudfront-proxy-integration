@@ -47,21 +47,24 @@ resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
     }
   }
 
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+
   # You can make the distribution available on a subdomain of your website
-  # Uncomment the following and define the referenced variables
+  #  - Uncomment the following and define the referenced variables  in a `terraform.tfvars` file
+  #  - Remove the default viewer certificate above
+
   # aliases = [var.proxy_subdomain_domain]
   # viewer_certificate {
   #   acm_certificate_arn = var.certificate_arn
   #   ssl_support_method  = "sni-only"
   # }
-
-
-  viewer_certificate {
-    cloudfront_default_certificate = true
-  }
 }
 
 # You can make the distribution available on a subdomain of your website
+# - Uncomment the following and define the referenced variables in a `terraform.tfvars` file
+
 # resource "aws_route53_record" "cloudfront_terraform_new_distribution_record" {
 #   zone_id = var.domain_zone_id
 #   name    = var.proxy_subdomain_domain
