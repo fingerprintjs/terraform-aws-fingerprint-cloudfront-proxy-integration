@@ -3,7 +3,7 @@ locals {
   # TODO: When adapting this example, replace this with your actual website origin (directly or through a `terraform.tfvars` file)
   website_origin_domain_name = "yourwebsite.com"
   # TODO: When adapting this example, replace this with the path segment you want for your proxy integration (directly or through a `terraform.tfvars` file)
-  #       Avoid ad blocker triggers like "fingerprint", "track", etc., random value is best
+  #       Avoid ad blocker triggers like "fingerprint", "track", etc., a random value is the best choice
   fpjs_behavior_path = "metrics"
 }
 
