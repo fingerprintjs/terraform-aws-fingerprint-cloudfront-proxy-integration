@@ -44,7 +44,7 @@ To set up CloudFront integration using Terraform, you need to:
 1. Add the Fingerprint Terraform module to your Terraform project.
 2. Use the module in the configuration of your CloudFront distribution.
 3. Deploy your Terraform project.
-4. Configure the Fingerprint Pro JS Agent on your site to communicate with your created Lambda@Edge function using the [scriptUrlPattern](https://dev.fingerprint.com/docs/js-agent#scripturlpattern) and [endpoint](https://dev.fingerprint.com/docs/js-agent#endpoint) parameters.
+4. [Configure](https://dev.fingerprint.com/docs/install-the-javascript-agent#configuring-the-agent) the Fingerprint JavaScript Agent on your site to communicate with your created Lambda@Edge function.
 
 See [CloudFront Proxy Integration guide](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2) in our documentation for step-by-step instructions and follow the [Terraform installation method](https://dev.fingerprint.com/docs/aws-cloudfront-integration-via-terraform). If you have any questions, reach out to our [support team](https://fingerprint.com/support/).
 
