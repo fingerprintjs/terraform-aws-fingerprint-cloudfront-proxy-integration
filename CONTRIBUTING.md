@@ -34,4 +34,50 @@ The integration is automatically released on every push to the main branch if th
 
 ### How to keep your integration up-to-date
 
-This Terraform module is in sync with Lambda function S3 bucket. Running `terraform apply` will deploy the latest version. 
+This Terraform module is in sync with Lambda function S3 bucket. Running `terraform apply` will deploy the latest version.
+
+### Testing against custom CDN and API hosts
+
+During testing, you might need the integration to proxy requests to the CDN and API hosts of your choosing (for example, the staging environment) instead of the production Fingerprint CDN and API.
+
+To achieve this, you can add your custom *host* (not URL) values to the **AWS Secret** associated with the proxy integration.
+
+You can either completely redefine the secret: 
+
+```terraform
+# Overwrite the existing secret, redefine everything from scratch 
+resource "aws_secretsmanager_secret_version" "updated_secret" {
+  secret_id = module.fingerprint_cloudfront_integration.fpjs_secret_manager_arn
+
+  secret_string = jsonencode({
+    fpjs_agent_download_path = local.fpjs_agent_download_path
+    fpjs_get_result_path     = local.fpjs_get_result_path
+    fpjs_pre_shared_secret   = local.fpjs_pre_shared_secret
+    FPJS_CDN_URL             = local.fpjs_cdn_url_override
+    FPJS_INGRESS_BASE_HOST   = local.fpjs_ingress_base_host_override
+  })
+}
+```
+
+Or you can keep the original values and just append the overrides. I experienced some problems with this setup when trying to change the original values later but your mileage may vary: 
+
+```terraform
+data "aws_secretsmanager_secret_version" "existing_secret" {
+  secret_id = var.secrets_id
+}
+
+locals {
+  endpoint_overrides = {
+    FPJS_CDN_URL           = var.fpjs_cdn_url_override
+    FPJS_INGRESS_BASE_HOST = var.fpjs_ingress_base_host_override
+  }
+}
+
+resource "aws_secretsmanager_secret_version" "endpoints_overrides" {
+  secret_id = var.secrets_id
+  secret_string = jsonencode(merge(
+    jsondecode(data.aws_secretsmanager_secret_version.existing_secret.secret_string), # Preserve existing secrets that are not managed by terraform
+    local.endpoint_overrides
+  ))
+}
+```
