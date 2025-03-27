@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v1.0.0...v1.0.1) (2025-03-27)
+
+
+### Bug Fixes
+
+* relax hashicorp/random provider's patch version ([70b27a0](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/70b27a07985409e6cdd97f08b8a29202132c75f6))
+* remove hard patch version from aws provider from our module ([9059802](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/90598021dec6b5a197cd0f742aac6edefce2feef))
+
 ## [1.0.1-rc.1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v1.0.0...v1.0.1-rc.1) (2025-03-26)
 
 
