@@ -1,4 +1,5 @@
-# Example CloudFront Distribution. DO NOT USE AS-IS, and make sure to follow best practices before releasing to the production.
+# Example CloudFront Distribution. 
+# DO NOT USE AS-IS, Make sure to adjust the code to your needs and security practices before releasing to production.
 resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
   comment = "Fingerprint proxy integration distribution (created via Terraform)"
 
@@ -47,26 +48,28 @@ resource "aws_cloudfront_distribution" "fpjs_cloudfront_distribution" {
     }
   }
 
-  aliases = [var.proxy_subdomain_domain]
   viewer_certificate {
-    acm_certificate_arn = var.certificate_arn
-    ssl_support_method  = "sni-only"
+    cloudfront_default_certificate = true
   }
 
-  # If don't want to serve the distribution from a subdomain for now, use the default certificate instead
-  # (comment out `viewer_certificate` and `aliases` above and use the `viewer_certificate` below)
+  # You can serve the distribution from a subdomain of your website
+  #  - Uncomment the `aliases` and `viewer_certificate` below
+  #  - Uncomment the 'aws_route53_record' below
+  #  - Uncomment the variables in `variables.tf`
+  #  - Define the referenced variables in a `terraform.tfvars` file
+  #  - Remove the default `viewer_certificate` above
 
+  # aliases = [var.proxy_subdomain_domain]
   # viewer_certificate {
-  #   cloudfront_default_certificate = true
+  #   acm_certificate_arn = var.certificate_arn
+  #   ssl_support_method  = "sni-only"
   # }
 }
 
-# You can make the distribution available on a subdomain of your website
-# (comment this out if you don't want to do that for now)
-resource "aws_route53_record" "cloudfront_terraform_new_distribution_record" {
-  zone_id = var.domain_zone_id
-  name    = var.proxy_subdomain_domain
-  type    = "CNAME"
-  ttl     = 300
-  records = [aws_cloudfront_distribution.fpjs_cloudfront_distribution.domain_name]
-}
+# resource "aws_route53_record" "cloudfront_terraform_new_distribution_record" {
+#   zone_id = var.domain_zone_id
+#   name    = var.proxy_subdomain_domain
+#   type    = "CNAME"
+#   ttl     = 300
+#   records = [aws_cloudfront_distribution.fpjs_cloudfront_distribution.domain_name]
+# }

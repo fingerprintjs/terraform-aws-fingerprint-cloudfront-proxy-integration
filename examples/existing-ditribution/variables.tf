@@ -4,42 +4,50 @@ variable "fpjs_shared_secret" {
   type        = string
 }
 
-variable "fpjs_behavior_path" {
-  // https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2#step-2-create-path-variables
-  description = "All Fingeprint requests will be proxied through this path segment"
-  type        = string
-}
-
 variable "fpjs_agent_download_path" {
   // https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2#step-2-create-path-variables
   description = "The Fingerprint agent download will be proxied through this path segment"
   type        = string
+  default     = "agent"
 }
 
 variable "fpjs_get_result_path" {
   // https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2#step-2-create-path-variables
   description = "The Fingerprint identification request will be proxied through this path segment"
   type        = string
+  default     = "result"
 }
 
-variable "website_domain" {
-  description = "The domain for your existing CloudFront distribution, like `yourwebsite.com`"
-  type        = string
-}
+/**
+ * The following variables are only relevant for this example. 
+ * - They are not required for the module itself
+ * - They are optional, uncomment them out if you want to adapt the example including adding a domain for the CloudFront distribution 
+ */
 
-variable "website_origin_domain_name" {
-  description = "The main origin of your distribution pointing to your website, like `yourwebsite.s3.amazonaws.com`"
-  type        = string
-}
+# variable "fpjs_behavior_path" {
+#   // https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2#step-2-create-path-variables
+#   description = "All Fingeprint requests will be proxied through this path segment"
+#   type        = string
+# }
 
-variable "domain_zone_id" {
-  description = "Zone ID of the domain for your existing CloudFront distribution"
-  type        = string
-}
+# variable "website_domain" {
+#   description = "The domain for your existing CloudFront distribution, like `yourwebsite.com`"
+#   type        = string
+# }
 
-variable "certificate_arn" {
-  description = "ARN of the domain certificate for your website"
-  type        = string
-}
+# variable "website_origin_domain_name" {
+#   description = "The main origin of your distribution pointing to your website, like `yourwebsite.s3.amazonaws.com`"
+#   type        = string
+# }
+
+# variable "domain_zone_id" {
+#   description = "Zone ID of the domain for your existing CloudFront distribution"
+#   type        = string
+# }
+
+# variable "certificate_arn" {
+#   description = "ARN of the domain certificate for your website"
+#   type        = string
+# }
 
 

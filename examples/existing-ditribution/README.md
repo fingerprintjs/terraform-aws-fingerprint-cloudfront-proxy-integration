@@ -13,6 +13,8 @@ To quickly run the example for testing purposes, you can:
 3. Run `terraform plan`.
 4. Run `terraform apply`.
 
+The domain-related resources and variables are commented out for simplicity but you can uncomment them or use just them as a reference.
+
 ### Using in production
 
 This is a simplified example. Use it as a reference but make sure to **adjust the code to your needs and security practices** before deploying it to production environments.
