@@ -34,3 +34,16 @@ variable "fpjs_proxy_lambda_role_permissions_boundary_arn" {
   description = "Permissions boundary ARN for the role assumed by the Proxy lambda. Make sure your permissions boundary allows the function to access the Secrets Manager secret created for the integration (`secretsmanager:GetSecretValue`) and create logs (`logs:CreateLogStream`, `logs:CreateLogGroup`, `logs:PutLogEvents`)."
   default     = null
 }
+
+variable "local_lambda_path" {
+  type        = string
+  default     = null
+  description = "Path to locally built lambda function that should be used for deployment, instead of the lambda stored in S3 bucket. Should be in zip format."
+}
+
+variable "local_lambda_hash" {
+  type        = string
+  default     = null
+  description = "Hash of the locally built lambda function, can be used to determine whether new version of the function should be deployed. Only relevant if local_lambda_path is set."
+}
+
