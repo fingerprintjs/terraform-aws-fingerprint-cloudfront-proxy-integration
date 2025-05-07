@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v1.0.1...v1.1.0) (2025-05-07)
+
+
+### Features
+
+* add support for using locally built lambda function ([924e6cf](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/924e6cf1dbbe1410096e63daf71ba778be3e903f))
+
 ## [1.1.0-rc.1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v1.0.1...v1.1.0-rc.1) (2025-05-07)
 
 
