@@ -40,3 +40,9 @@ variable "local_lambda_path" {
   default     = null
   description = "Path to locally built lambda function that should be used for deployment, instead of the lambda stored in S3 bucket. Should be in zip format."
 }
+
+variable "fetch_lambda_from_s3" {
+  type = bool
+  default = true
+  description = "Whether to fetch lambda code from Fingerprint S3 bucket. Should be set to `false` if `local_lambda_path` is used."
+}
