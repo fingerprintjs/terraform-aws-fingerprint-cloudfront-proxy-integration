@@ -40,10 +40,3 @@ variable "local_lambda_path" {
   default     = null
   description = "Path to locally built lambda function that should be used for deployment, instead of the lambda stored in S3 bucket. Should be in zip format."
 }
-
-variable "local_lambda_hash" {
-  type        = string
-  default     = null
-  description = "Hash of the locally built lambda function, can be used to determine whether new version of the function should be deployed. Only relevant if local_lambda_path is set."
-}
-

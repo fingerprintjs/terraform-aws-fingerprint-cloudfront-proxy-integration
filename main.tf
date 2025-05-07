@@ -106,7 +106,7 @@ resource "aws_lambda_function" "fpjs_proxy_lambda" {
   function_name    = "fingerprint-pro-cloudfront-lambda-${local.integration_id}"
   role             = aws_iam_role.fpjs_proxy_lambda.arn
   handler          = "fingerprintjs-pro-cloudfront-lambda-function.handler"
-  source_code_hash = var.local_lambda_path == null ? data.aws_s3_object.fpjs_integration_s3_bucket.etag : var.local_lambda_hash
+  source_code_hash = var.local_lambda_path == null ? data.aws_s3_object.fpjs_integration_s3_bucket.etag : filemd5(var.local_lambda_path)
   memory_size      = 128
   timeout          = 10
 
