@@ -1,3 +1,10 @@
+## [1.1.1-rc.1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v1.1.0...v1.1.1-rc.1) (2025-07-09)
+
+
+### Bug Fixes
+
+* remove usage of deprecated managed_policy_arns attribute ([07e97ae](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/07e97ae7e987c84b644e19bcf06289a015f31e63))
+
 ## [1.1.0](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v1.0.1...v1.1.0) (2025-05-07)
 
 
