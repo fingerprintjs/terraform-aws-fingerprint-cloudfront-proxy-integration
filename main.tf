@@ -86,11 +86,15 @@ resource "aws_iam_role_policy" "fpjs_proxy_lambda" {
   })
 }
 
+resource "aws_iam_role_policy_attachment" "fpjs_proxy_lambda" {
+  role       = aws_iam_role.fpjs_proxy_lambda.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
 resource "aws_iam_role" "fpjs_proxy_lambda" {
   name                 = "fingerprint-pro-lambda-role-${local.integration_id}"
   permissions_boundary = var.fpjs_proxy_lambda_role_permissions_boundary_arn
   assume_role_policy   = data.aws_iam_policy_document.assume_role.json
-  managed_policy_arns  = ["arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
 }
 
 data "aws_s3_object" "fpjs_integration_s3_bucket" {
