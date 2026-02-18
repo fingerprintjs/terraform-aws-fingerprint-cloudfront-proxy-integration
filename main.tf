@@ -114,7 +114,7 @@ resource "aws_lambda_function" "fpjs_proxy_lambda" {
   memory_size      = 128
   timeout          = 10
 
-  runtime = "nodejs20.x"
+  runtime = "nodejs24.x"
 
   publish = true
 }
