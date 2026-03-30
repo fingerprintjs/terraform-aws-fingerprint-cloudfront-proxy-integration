@@ -48,3 +48,14 @@ variable "fetch_lambda_from_s3" {
   default     = true
   description = "Whether to fetch lambda code from Fingerprint S3 bucket. Should be set to `false` if `local_lambda_path` is used."
 }
+
+variable "integration_path_depth" {
+  type    = number
+  default = 1
+
+  description = "Describes the amount of path segments of your CloudFront behavior path"
+  validation {
+    condition     = var.integration_path_depth >= 0
+    error_message = "value must be greater than or equal to 0"
+  }
+}
