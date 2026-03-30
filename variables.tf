@@ -2,9 +2,10 @@ variable "fpjs_get_result_path" {
   type        = string
   description = "request path used to send V3 identification requests (aka FPJS_GET_RESULT_PATH)"
   nullable    = true
+  default     = null
 
   validation {
-    condition     = can(regex("^([a-zA-Z0-9\\-])+$", var.fpjs_get_result_path))
+    condition     = var.fpjs_get_result_path == null || can(regex("^([a-zA-Z0-9\\-])+$", var.fpjs_get_result_path))
     error_message = "value should only consist of alphanumeric values and dashes"
   }
 }
@@ -13,9 +14,10 @@ variable "fpjs_agent_download_path" {
   type        = string
   description = "request path used to send V3 agent download requests (aka FPJS_AGENT_DOWNLOAD_PATH)"
   nullable    = true
+  default     = null
 
   validation {
-    condition     = can(regex("^([a-zA-Z0-9\\-])+$", var.fpjs_agent_download_path))
+    condition     = var.fpjs_agent_download_path == null || can(regex("^([a-zA-Z0-9\\-])+$", var.fpjs_agent_download_path))
     error_message = "value should only consist of alphanumeric values and dashes"
   }
 }
