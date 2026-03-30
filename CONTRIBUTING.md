@@ -5,9 +5,8 @@
 
 For proposing changes, use the standard [pull request approach](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). It's recommended to discuss fixes or new functionality in the Issues, first.
 
-* The `main` and `rc` branches are locked for the push action.
-* Releases are created from the `main` branch. If you have CloudFront Integration set up, it is running code from the `main` branch. Pull requests into the `main` branch are not accepted.
-* The `rc` branch functions as a candidate for the next release. Create your pull requests into this branch. The code in `rc` must always pass the tests.
+* The `main` branch is locked for the push action.
+* Releases are created from the `main` branch.
 
 ### Code style
 
@@ -27,10 +26,27 @@ We manually test the implementation. End-to-end will be provided in the future.
 
 ### How to release a new version
 
-Every PR should target `rc` branch first. Upon merge, if there are relevant changes a new release candidate is created.
-When that happens, an automated PR is created to `main` branch, and E2E tests run against it. If the tests pass, the PR can be merged and the release is created.
+Every PR should target `main` branch. Add a changeset to your PR by running:
 
-The integration is automatically released on every push to the main branch if there are relevant changes. The workflow must be approved by one of the maintainers, first.
+```
+npx changeset
+```
+
+Upon merge to `main`, the release workflow automatically creates a versioning PR. Once that PR is merged, the release is published.
+
+To create a release candidate (pre-release), enter pre-release mode first:
+
+```
+npx changeset pre enter rc
+```
+
+To exit pre-release mode and prepare a stable release:
+
+```
+npx changeset pre exit
+```
+
+The integration is automatically released on every push to the main branch if there are relevant changesets. The workflow must be approved by one of the maintainers, first.
 
 ### How to keep your integration up-to-date
 
