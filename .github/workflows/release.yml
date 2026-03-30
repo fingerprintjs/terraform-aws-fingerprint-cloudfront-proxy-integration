@@ -3,15 +3,20 @@ on:
   push:
     branches:
       - main
-      - rc
 
 jobs:
-  build-and-release:
+  release:
     name: 'Build project, run CI checks and publish new release'
-    uses: fingerprintjs/dx-team-toolkit/.github/workflows/release-server-sdk.yml@v1
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/release-sdk-changesets.yml@v1
     with:
+      appId: ${{ vars.APP_ID }}
+      runnerAppId: ${{ vars.RUNNER_APP_ID }}
+      version-command: pnpm changeset:version
+      publish-command: pnpm changeset:publish
       language: terraform
       language-version: 1.9.4
-      appId: ${{ vars.APP_ID }}
+      prepare-command: pnpm prepare-package
+      github-release-files: 'package.zip'
     secrets:
+      RUNNER_APP_PRIVATE_KEY: ${{ secrets.RUNNER_APP_PRIVATE_KEY }}
       APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}

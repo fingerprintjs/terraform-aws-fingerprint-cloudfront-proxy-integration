@@ -5,11 +5,13 @@
   "author": "FingerprintJS, Inc (https://fingerprint.com)",
   "description": "Terraform module for Fingerprint CloudFront Proxy Integration",
   "scripts": {
+    "prepare-package": "bash scripts/preparePackage.sh",
     "changeset:publish": "changeset publish",
     "changeset:version": "changeset version"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.30.0"
+    "@changesets/cli": "^2.30.0",
+    "@fingerprintjs/changesets-changelog-format": "^0.2.0"
   },
   "license": "MIT"
 }

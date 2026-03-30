@@ -41,3 +41,9 @@ terraform.rc
 
 # Ignore Terraform locks in examples folder
 examples/**/*.lock.hcl
+
+# Node
+/node_modules
+
+# Build assets
+**/package.zip
