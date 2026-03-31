@@ -4,20 +4,6 @@ variable "fpjs_shared_secret" {
   type        = string
 }
 
-variable "fpjs_agent_download_path" {
-  // https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2#step-2-create-path-variables
-  description = "The Fingerprint agent download will be proxied through this path segment"
-  type        = string
-  default     = "agent"
-}
-
-variable "fpjs_get_result_path" {
-  // https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2#step-2-create-path-variables
-  description = "The Fingerprint identification request will be proxied through this path segment"
-  type        = string
-  default     = "result"
-}
-
 /**
  * The following variables are only relevant for this example. 
  * - They are not required for the module itself

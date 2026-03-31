@@ -68,7 +68,7 @@ resource "aws_cloudfront_distribution" "main_website_distribution" {
   }
 
   ordered_cache_behavior {
-    path_pattern = "${local.fpjs_behavior_path}/*"
+    path_pattern = "${local.fpjs_behavior_path}*"
 
     allowed_methods          = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
     cached_methods           = ["GET", "HEAD"]

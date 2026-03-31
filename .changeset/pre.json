@@ -1,0 +1,8 @@
+{
+  "mode": "pre",
+  "tag": "rc",
+  "initialVersions": {
+    "@fingerprint/terraform-aws-cloudfront-proxy": "1.1.1"
+  },
+  "changesets": []
+}
