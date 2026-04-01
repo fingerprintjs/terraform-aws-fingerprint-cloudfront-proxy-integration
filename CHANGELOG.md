@@ -1,5 +1,3 @@
-## [1.1.1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v1.1.0...v1.1.1) (2025-07-14)
-
 ## 1.2.0-rc.0
 
 ### Minor Changes
@@ -8,6 +6,8 @@
 - Add `integration_path_depth` variable ([15510de](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/15510de03711b0b6aef819b3b497a93ff2d32ac9))
 - Make V3-related variables optional (`fpjs_get_result_path`, `fpjs_agent_download_path`) ([f8d8bec](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/f8d8bec9020a529baa130970a13f54a0eab00141))
 - Updated examples to reflect changes needed for V4 support ([390a79b](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/390a79b72caa53ea853c8df4b28f0e8c3a9e40da))
+
+## [1.1.1](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/compare/v1.1.0...v1.1.1) (2025-07-14)
 
 ### Bug Fixes
 
