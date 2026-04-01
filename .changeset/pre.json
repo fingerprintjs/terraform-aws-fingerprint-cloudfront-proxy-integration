@@ -4,5 +4,10 @@
   "initialVersions": {
     "@fingerprint/terraform-aws-cloudfront-proxy": "1.1.1"
   },
-  "changesets": []
+  "changesets": [
+    "better-teeth-lay",
+    "jolly-heads-juggle",
+    "social-feet-learn",
+    "tired-sheep-rescue"
+  ]
 }
