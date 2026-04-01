@@ -11,8 +11,8 @@ jobs:
     with:
       appId: ${{ vars.APP_ID }}
       runnerAppId: ${{ vars.RUNNER_APP_ID }}
-      version-command: pnpm prepare-package && pnpm changeset:version
-      publish-command: pnpm prepare-package && pnpm changeset:publish
+      version-command: pnpm changeset:version
+      publish-command: pnpm changeset:publish
       language: terraform
       language-version: 1.9.4
       github-release-files: 'package.zip'
