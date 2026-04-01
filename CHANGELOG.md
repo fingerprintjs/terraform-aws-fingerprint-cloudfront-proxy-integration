@@ -1,3 +1,11 @@
+## 2.0.0-rc.1
+
+### Major Changes
+
+- Bump `hashicorp/aws` requirement to `~> 6.21` to support nodejs24.x runtime.
+
+  For more details, refer to the official [Terraform AWS Provider Version 6 Upgrade Guide](https://registry.terraform.io/providers/hashicorp/awS/latest/docs/guides/version-6-upgrade) ([1b82d60](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/1b82d60ca47d36bb8603a3194cc4901fadbb4c9a))
+
 ## 1.2.0-rc.0
 
 ### Minor Changes
