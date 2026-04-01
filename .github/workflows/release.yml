@@ -15,7 +15,6 @@ jobs:
       publish-command: pnpm prepare-package && pnpm changeset:publish
       language: terraform
       language-version: 1.9.4
-      prepare-command: pnpm prepare-package
       github-release-files: 'package.zip'
     secrets:
       RUNNER_APP_PRIVATE_KEY: ${{ secrets.RUNNER_APP_PRIVATE_KEY }}
