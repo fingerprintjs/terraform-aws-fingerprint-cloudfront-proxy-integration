@@ -1,6 +1,6 @@
 {
   "name": "@fingerprint/terraform-aws-cloudfront-proxy",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0",
   "private": true,
   "author": "FingerprintJS, Inc (https://fingerprint.com)",
   "description": "Terraform module for Fingerprint CloudFront Proxy Integration",
