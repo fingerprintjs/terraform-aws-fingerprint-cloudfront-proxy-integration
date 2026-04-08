@@ -1,3 +1,18 @@
+## 2.0.0
+
+### Major Changes
+
+- Bump `hashicorp/aws` requirement to `~> 6.21` to support nodejs24.x runtime.
+
+  For more details, refer to the official [Terraform AWS Provider Version 6 Upgrade Guide](https://registry.terraform.io/providers/hashicorp/awS/latest/docs/guides/version-6-upgrade) ([1b82d60](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/1b82d60ca47d36bb8603a3194cc4901fadbb4c9a))
+
+### Minor Changes
+
+- Updated Lambda runtime to nodejs24.x ([bb51b6c](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/bb51b6c6e3e515cb0aba36b089a20450ddb9f3c8))
+- Add `integration_path_depth` variable ([15510de](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/15510de03711b0b6aef819b3b497a93ff2d32ac9))
+- Make V3-related variables optional (`fpjs_get_result_path`, `fpjs_agent_download_path`) ([f8d8bec](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/f8d8bec9020a529baa130970a13f54a0eab00141))
+- Updated examples to reflect changes needed for V4 support ([390a79b](https://github.com/fingerprintjs/terraform-aws-fingerprint-cloudfront-proxy-integration/commit/390a79b72caa53ea853c8df4b28f0e8c3a9e40da))
+
 ## 2.0.0-rc.1
 
 ### Major Changes
