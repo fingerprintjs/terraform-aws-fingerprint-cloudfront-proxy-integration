@@ -10,12 +10,6 @@ variable "fpjs_shared_secret" {
  * - They are optional, uncomment them out if you want to adapt the example including adding a domain for the CloudFront distribution 
  */
 
-# variable "fpjs_behavior_path" {
-#   // https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2#step-2-create-path-variables
-#   description = "All Fingeprint requests will be proxied through this path segment"
-#   type        = string
-# }
-
 # variable "website_domain" {
 #   description = "The domain for your existing CloudFront distribution, like `yourwebsite.com`"
 #   type        = string
