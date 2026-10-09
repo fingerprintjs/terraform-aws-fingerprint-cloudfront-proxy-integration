@@ -20,7 +20,7 @@ Fingerprint Pro CloudFront Integration is responsible for
 - Proxying download requests of the latest Fingerprint Pro JS Agent between your site and Fingerprint CDN.
 - Proxying identification requests and responses between your site and Fingerprint Pro's APIs.
 
-This [improves](https://dev.fingerprint.com/docs/cloudfront-proxy-integration#the-benefits-of-using-the-cloudfront-integration) both accuracy and reliability of visitor identification and bot detection on your site.
+This [improves](https://docs.fingerprint.com/docs/cloudfront-proxy-integration-v2#the-benefits-of-using-the-cloudfront-integration) both accuracy and reliability of visitor identification and bot detection on your site.
 
 You can install the CloudFront proxy integration using a [CloudFormation template](https://github.com/fingerprintjs/fingerprint-pro-cloudfront-integration) or as [a Terraform module](https://registry.terraform.io/modules/fingerprintjs/fingerprint-cloudfront-proxy-integration/aws/latest) included in this repository. For more details, see the [full documentation](https://dev.fingerprint.com/docs/cloudfront-proxy-integration-v2).
 
