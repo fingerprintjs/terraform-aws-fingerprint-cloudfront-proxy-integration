@@ -55,6 +55,24 @@ This repository also includes the following Terraform project examples. Use thes
 - [Adding the Fingerprint proxy integration to an existing CloudFront distribution](./examples//existing-ditribution/) (recommended)
 - [Creating a new CloudFront distribution just for the Fingerprint proxy integration](./examples/standalone-distribution/)
 
+## Fingerprint JS agent V3 compatibility
+
+If your site still uses Fingerprint JS agent V3, set the V3 agent download and identification request paths on the module as well:
+
+```terraform
+module "fingerprint_cloudfront_integration" {
+  source = "fingerprintjs/fingerprint-cloudfront-proxy-integration/aws"
+
+  fpjs_shared_secret = "FPJS_PRE_SHARED_SECRET"
+
+  // Only required while Fingerprint JS agent V3 is in use
+  fpjs_agent_download_path = "FPJS_AGENT_DOWNLOAD_PATH"
+  fpjs_get_result_path     = "FPJS_GET_RESULT_PATH"
+}
+```
+
+Once all your clients use Fingerprint JS agent V4, remove both variables and run `terraform apply`. See [Migrating CloudFront proxy integration to JavaScript Agent V4](https://docs.fingerprint.com/docs/cloudfront-integration-migration-to-js-agent-v4) for details.
+
 ## How to update
 
 The Terraform module does include any mechanism for automatic updates. To keep your integration up to date, please run `terraform apply` regularly.
